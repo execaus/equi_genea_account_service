@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package common;
+
+import "google/protobuf/timestamp.proto";
+
+option go_package = "github.com/execaus/equi_genea_account_service/proto/common;commonpb";
+
+message Account {
+  string id = 1;
+  string email = 2;
+  string password = 3;
+  google.protobuf.Timestamp created_at = 4;
+  google.protobuf.Timestamp updated_at = 5;
+  google.protobuf.Timestamp last_activity_at = 6;
+}

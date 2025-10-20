@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package account;
+
+import "common/models.proto";
+
+option go_package = "github.com/execaus/equi_genea_account_service/proto;accountpb";
+
+service AccountService {
+  rpc GetAccountById(GetAccountByIdRequest) returns (GetAccountByIdResponse);
+}
+
+message GetAccountByIdRequest {
+  string id = 1;
+}
+
+message GetAccountByIdResponse {
+  common.Account account = 1;
+}
