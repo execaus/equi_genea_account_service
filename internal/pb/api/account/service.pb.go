@@ -7,7 +7,6 @@
 package account
 
 import (
-	models "equi_genea_account_service/internal/pb/api/account/models"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
@@ -68,7 +67,7 @@ func (x *GetAccountByIdRequest) GetId() string {
 
 type GetAccountByIdResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Account       *models.Account        `protobuf:"bytes,1,opt,name=account,proto3" json:"account,omitempty"`
+	Account       *Account               `protobuf:"bytes,1,opt,name=account,proto3" json:"account,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -103,7 +102,7 @@ func (*GetAccountByIdResponse) Descriptor() ([]byte, []int) {
 	return file_api_account_service_proto_rawDescGZIP(), []int{1}
 }
 
-func (x *GetAccountByIdResponse) GetAccount() *models.Account {
+func (x *GetAccountByIdResponse) GetAccount() *Account {
 	if x != nil {
 		return x.Account
 	}
@@ -114,13 +113,13 @@ var File_api_account_service_proto protoreflect.FileDescriptor
 
 const file_api_account_service_proto_rawDesc = "" +
 	"\n" +
-	"\x19api/account/service.proto\x12\aaccount\x1a api/account/models/account.proto\"'\n" +
+	"\x19api/account/service.proto\x12\aaccount\x1a\x18api/account/models.proto\"'\n" +
 	"\x15GetAccountByIdRequest\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\"C\n" +
 	"\x16GetAccountByIdResponse\x12)\n" +
 	"\aaccount\x18\x01 \x01(\v2\x0f.models.AccountR\aaccount2c\n" +
 	"\x0eAccountService\x12Q\n" +
-	"\x0eGetAccountById\x12\x1e.account.GetAccountByIdRequest\x1a\x1f.account.GetAccountByIdResponseB4Z2equi_genea_account_service/internal/pb/api/accountb\x06proto3"
+	"\x0eGetAccountById\x12\x1e.account.GetAccountByIdRequest\x1a\x1f.account.GetAccountByIdResponseB\x15Z\x13api/account;accountb\x06proto3"
 
 var (
 	file_api_account_service_proto_rawDescOnce sync.Once
@@ -138,7 +137,7 @@ var file_api_account_service_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
 var file_api_account_service_proto_goTypes = []any{
 	(*GetAccountByIdRequest)(nil),  // 0: account.GetAccountByIdRequest
 	(*GetAccountByIdResponse)(nil), // 1: account.GetAccountByIdResponse
-	(*models.Account)(nil),         // 2: models.Account
+	(*Account)(nil),                // 2: models.Account
 }
 var file_api_account_service_proto_depIdxs = []int32{
 	2, // 0: account.GetAccountByIdResponse.account:type_name -> models.Account
@@ -156,6 +155,7 @@ func file_api_account_service_proto_init() {
 	if File_api_account_service_proto != nil {
 		return
 	}
+	file_api_account_models_proto_init()
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{

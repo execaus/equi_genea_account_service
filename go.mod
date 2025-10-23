@@ -10,7 +10,7 @@ require (
 )
 
 require (
-	github.com/execaus/equi_genea_api_contracts v1.7.0 // indirect
+	github.com/execaus/equi_genea_api_contracts v1.18.0 // indirect
 	github.com/fsnotify/fsnotify v1.9.0 // indirect
 	github.com/go-viper/mapstructure/v2 v2.4.0 // indirect
 	github.com/jackc/pgpassfile v1.0.0 // indirect
