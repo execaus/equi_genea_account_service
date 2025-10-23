@@ -2,7 +2,7 @@ package app
 
 import (
 	"context"
-	accountpb "equi_genea_account_service/internal/pb"
+	accountpb "equi_genea_account_service/internal/pb/api/account"
 	"equi_genea_account_service/internal/service"
 )
 

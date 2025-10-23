@@ -2,9 +2,9 @@
 // versions:
 // 	protoc-gen-go v1.36.10
 // 	protoc        v6.33.0
-// source: common/models.proto
+// source: api/account/models/account.proto
 
-package common
+package models
 
 import (
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
@@ -36,7 +36,7 @@ type Account struct {
 
 func (x *Account) Reset() {
 	*x = Account{}
-	mi := &file_common_models_proto_msgTypes[0]
+	mi := &file_api_account_models_account_proto_msgTypes[0]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -48,7 +48,7 @@ func (x *Account) String() string {
 func (*Account) ProtoMessage() {}
 
 func (x *Account) ProtoReflect() protoreflect.Message {
-	mi := &file_common_models_proto_msgTypes[0]
+	mi := &file_api_account_models_account_proto_msgTypes[0]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -61,7 +61,7 @@ func (x *Account) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Account.ProtoReflect.Descriptor instead.
 func (*Account) Descriptor() ([]byte, []int) {
-	return file_common_models_proto_rawDescGZIP(), []int{0}
+	return file_api_account_models_account_proto_rawDescGZIP(), []int{0}
 }
 
 func (x *Account) GetId() string {
@@ -106,11 +106,11 @@ func (x *Account) GetLastActivityAt() *timestamppb.Timestamp {
 	return nil
 }
 
-var File_common_models_proto protoreflect.FileDescriptor
+var File_api_account_models_account_proto protoreflect.FileDescriptor
 
-const file_common_models_proto_rawDesc = "" +
+const file_api_account_models_account_proto_rawDesc = "" +
 	"\n" +
-	"\x13common/models.proto\x12\x06common\x1a\x1fgoogle/protobuf/timestamp.proto\"\x87\x02\n" +
+	" api/account/models/account.proto\x12\x06models\x1a\x1fgoogle/protobuf/timestamp.proto\"\x87\x02\n" +
 	"\aAccount\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x14\n" +
 	"\x05email\x18\x02 \x01(\tR\x05email\x12\x1a\n" +
@@ -119,29 +119,29 @@ const file_common_models_proto_rawDesc = "" +
 	"created_at\x18\x04 \x01(\v2\x1a.google.protobuf.TimestampR\tcreatedAt\x129\n" +
 	"\n" +
 	"updated_at\x18\x05 \x01(\v2\x1a.google.protobuf.TimestampR\tupdatedAt\x12D\n" +
-	"\x10last_activity_at\x18\x06 \x01(\v2\x1a.google.protobuf.TimestampR\x0elastActivityAtB6Z4equi_genea_account_service/internal/pb/common;commonb\x06proto3"
+	"\x10last_activity_at\x18\x06 \x01(\v2\x1a.google.protobuf.TimestampR\x0elastActivityAtB;Z9equi_genea_account_service/internal/pb/api/account/modelsb\x06proto3"
 
 var (
-	file_common_models_proto_rawDescOnce sync.Once
-	file_common_models_proto_rawDescData []byte
+	file_api_account_models_account_proto_rawDescOnce sync.Once
+	file_api_account_models_account_proto_rawDescData []byte
 )
 
-func file_common_models_proto_rawDescGZIP() []byte {
-	file_common_models_proto_rawDescOnce.Do(func() {
-		file_common_models_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_common_models_proto_rawDesc), len(file_common_models_proto_rawDesc)))
+func file_api_account_models_account_proto_rawDescGZIP() []byte {
+	file_api_account_models_account_proto_rawDescOnce.Do(func() {
+		file_api_account_models_account_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_api_account_models_account_proto_rawDesc), len(file_api_account_models_account_proto_rawDesc)))
 	})
-	return file_common_models_proto_rawDescData
+	return file_api_account_models_account_proto_rawDescData
 }
 
-var file_common_models_proto_msgTypes = make([]protoimpl.MessageInfo, 1)
-var file_common_models_proto_goTypes = []any{
-	(*Account)(nil),               // 0: common.Account
+var file_api_account_models_account_proto_msgTypes = make([]protoimpl.MessageInfo, 1)
+var file_api_account_models_account_proto_goTypes = []any{
+	(*Account)(nil),               // 0: models.Account
 	(*timestamppb.Timestamp)(nil), // 1: google.protobuf.Timestamp
 }
-var file_common_models_proto_depIdxs = []int32{
-	1, // 0: common.Account.created_at:type_name -> google.protobuf.Timestamp
-	1, // 1: common.Account.updated_at:type_name -> google.protobuf.Timestamp
-	1, // 2: common.Account.last_activity_at:type_name -> google.protobuf.Timestamp
+var file_api_account_models_account_proto_depIdxs = []int32{
+	1, // 0: models.Account.created_at:type_name -> google.protobuf.Timestamp
+	1, // 1: models.Account.updated_at:type_name -> google.protobuf.Timestamp
+	1, // 2: models.Account.last_activity_at:type_name -> google.protobuf.Timestamp
 	3, // [3:3] is the sub-list for method output_type
 	3, // [3:3] is the sub-list for method input_type
 	3, // [3:3] is the sub-list for extension type_name
@@ -149,26 +149,26 @@ var file_common_models_proto_depIdxs = []int32{
 	0, // [0:3] is the sub-list for field type_name
 }
 
-func init() { file_common_models_proto_init() }
-func file_common_models_proto_init() {
-	if File_common_models_proto != nil {
+func init() { file_api_account_models_account_proto_init() }
+func file_api_account_models_account_proto_init() {
+	if File_api_account_models_account_proto != nil {
 		return
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
-			RawDescriptor: unsafe.Slice(unsafe.StringData(file_common_models_proto_rawDesc), len(file_common_models_proto_rawDesc)),
+			RawDescriptor: unsafe.Slice(unsafe.StringData(file_api_account_models_account_proto_rawDesc), len(file_api_account_models_account_proto_rawDesc)),
 			NumEnums:      0,
 			NumMessages:   1,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
-		GoTypes:           file_common_models_proto_goTypes,
-		DependencyIndexes: file_common_models_proto_depIdxs,
-		MessageInfos:      file_common_models_proto_msgTypes,
+		GoTypes:           file_api_account_models_account_proto_goTypes,
+		DependencyIndexes: file_api_account_models_account_proto_depIdxs,
+		MessageInfos:      file_api_account_models_account_proto_msgTypes,
 	}.Build()
-	File_common_models_proto = out.File
-	file_common_models_proto_goTypes = nil
-	file_common_models_proto_depIdxs = nil
+	File_api_account_models_account_proto = out.File
+	file_api_account_models_account_proto_goTypes = nil
+	file_api_account_models_account_proto_depIdxs = nil
 }

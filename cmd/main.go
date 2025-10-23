@@ -5,7 +5,7 @@ import (
 	"equi_genea_account_service/config"
 	"equi_genea_account_service/internal/app"
 	"equi_genea_account_service/internal/db"
-	accountpb "equi_genea_account_service/internal/pb"
+	accountpb "equi_genea_account_service/internal/pb/api/account"
 	"equi_genea_account_service/internal/service"
 	"fmt"
 	"log"
