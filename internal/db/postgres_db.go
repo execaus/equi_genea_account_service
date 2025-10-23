@@ -8,7 +8,7 @@ import (
 	"github.com/jackc/pgx/v5"
 )
 
-func NewPostgresDB(cfg *config.DatabaseConfig) (*pgx.Conn, error) {
+func NewPostgresDB(cfg *config.DatabaseConfig) (*Queries, *pgx.Conn, error) {
 	connStr := fmt.Sprintf(
 		"postgres://%s:%s@%s:%d/%s",
 		cfg.User,
@@ -20,8 +20,10 @@ func NewPostgresDB(cfg *config.DatabaseConfig) (*pgx.Conn, error) {
 
 	conn, err := pgx.Connect(context.Background(), connStr)
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 	}
 
-	return conn, nil
+	queries := New(conn)
+
+	return queries, conn, nil
 }

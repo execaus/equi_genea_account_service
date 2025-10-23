@@ -7,7 +7,7 @@
 package accountpb
 
 import (
-	common "github.com/execaus/equi_genea_account_service/proto/common"
+	common "equi_genea_account_service/internal/pb/common"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
@@ -120,7 +120,7 @@ const file_account_proto_rawDesc = "" +
 	"\x16GetAccountByIdResponse\x12)\n" +
 	"\aaccount\x18\x01 \x01(\v2\x0f.common.AccountR\aaccount2c\n" +
 	"\x0eAccountService\x12Q\n" +
-	"\x0eGetAccountById\x12\x1e.account.GetAccountByIdRequest\x1a\x1f.account.GetAccountByIdResponseB?Z=github.com/execaus/equi_genea_account_service/proto;accountpbb\x06proto3"
+	"\x0eGetAccountById\x12\x1e.account.GetAccountByIdRequest\x1a\x1f.account.GetAccountByIdResponseB<Z:equi_genea_account_service/internal/pb/accountpb;accountpbb\x06proto3"
 
 var (
 	file_account_proto_rawDescOnce sync.Once

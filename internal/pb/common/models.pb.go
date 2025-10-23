@@ -4,7 +4,7 @@
 // 	protoc        v6.33.0
 // source: common/models.proto
 
-package commonpb
+package common
 
 import (
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
@@ -119,7 +119,7 @@ const file_common_models_proto_rawDesc = "" +
 	"created_at\x18\x04 \x01(\v2\x1a.google.protobuf.TimestampR\tcreatedAt\x129\n" +
 	"\n" +
 	"updated_at\x18\x05 \x01(\v2\x1a.google.protobuf.TimestampR\tupdatedAt\x12D\n" +
-	"\x10last_activity_at\x18\x06 \x01(\v2\x1a.google.protobuf.TimestampR\x0elastActivityAtBEZCgithub.com/execaus/equi_genea_account_service/proto/common;commonpbb\x06proto3"
+	"\x10last_activity_at\x18\x06 \x01(\v2\x1a.google.protobuf.TimestampR\x0elastActivityAtB6Z4equi_genea_account_service/internal/pb/common;commonb\x06proto3"
 
 var (
 	file_common_models_proto_rawDescOnce sync.Once
