@@ -38,8 +38,6 @@ update_api_contracts:
 		else \
 			echo "Updating to $$LATEST..."; \
 			go get $(API_CONTRACTS_MODULE)@$$LATEST; \
-			go mod edit -require=$(API_CONTRACTS_MODULE)@$$LATEST; \
-			go mod tidy; \
 			echo "Updated API contracts to $$LATEST"; \
 		fi \
 	)
