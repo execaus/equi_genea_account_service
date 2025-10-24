@@ -6,6 +6,7 @@
 GOOSE_DRIVER=postgres
 GOOSE_DBSTRING=postgres://admin:admin@localhost:5432/admin_db
 GOOSE_MIGRATION_DIR=./migrations
+DATABASE_PASSWORD=1234
 ```
 
 ### Описание переменных
