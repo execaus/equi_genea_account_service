@@ -32,6 +32,38 @@ func (s *AccountService) GetAccountById(ctx context.Context, id uuid.UUID) (*mod
 	return &outputModel, nil
 }
 
+func (s *AccountService) IsExistByEmail(ctx context.Context, email string) (bool, error) {
+	isExist, err := s.queries.IsExistByEmail(ctx, email)
+	if err != nil {
+		return false, err
+	}
+
+	return isExist, nil
+}
+
+func (s *AccountService) CreateAccount(ctx context.Context, id uuid.UUID, email, password string) (*models.Account, error) {
+	accountID := pgtype.UUID{
+		Bytes: id,
+		Valid: true,
+	}
+
+	dbAccount, err := s.queries.CreateAccount(ctx, db.CreateAccountParams{
+		ID:       accountID,
+		Email:    email,
+		Password: password,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	account := &models.Account{}
+	if err = account.LoadFromDB(&dbAccount); err != nil {
+		return nil, err
+	}
+
+	return account, nil
+}
+
 func NewAccountService(queries *db.Queries) *AccountService {
 	return &AccountService{queries: queries}
 }

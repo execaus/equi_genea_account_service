@@ -8,11 +8,18 @@ import (
 	"github.com/jackc/pgx/v5/pgtype"
 )
 
+// Таблица хранения аккаунтов пользователей
 type Account struct {
-	ID             pgtype.UUID
-	Email          string
-	Password       string
-	CreatedAt      pgtype.Timestamp
-	UpdatedAt      pgtype.Timestamp
+	// Уникальный идентификатор аккаунта
+	ID pgtype.UUID
+	// Адрес электронной почты пользователя
+	Email string
+	// Хэш пароля пользователя
+	Password string
+	// Дата и время создания аккаунта
+	CreatedAt pgtype.Timestamp
+	// Дата и время последнего обновления аккаунта
+	UpdatedAt pgtype.Timestamp
+	// Дата и время последней активности пользователя
 	LastActivityAt pgtype.Timestamp
 }

@@ -6,7 +6,6 @@ import (
 	"equi_genea_account_service/internal/service"
 
 	"github.com/google/uuid"
-	"google.golang.org/protobuf/types/known/timestamppb"
 )
 
 type AccountHandler struct {
@@ -26,25 +25,28 @@ func (h *AccountHandler) GetAccountById(ctx context.Context, in *accountpb.GetAc
 	}
 
 	return &accountpb.GetAccountByIdResponse{
-		Account: &accountpb.Account{
-			Id:             account.ID.String(),
-			Email:          account.Email,
-			Password:       account.Password,
-			CreatedAt:      timestamppb.New(account.CreatedAt),
-			UpdatedAt:      timestamppb.New(account.UpdatedAt),
-			LastActivityAt: timestamppb.New(account.LastActivityAt),
-		},
+		Account: account.ToAccountPB(),
 	}, nil
 }
 
 func (h *AccountHandler) CreateAccount(ctx context.Context, in *accountpb.CreateAccountRequest) (*accountpb.CreateAccountResponse, error) {
-	//TODO implement me
-	panic("implement me")
+	account, err := h.service.CreateAccount(ctx, uuid.New(), in.Email, in.PasswordHash)
+	if err != nil {
+		return nil, err
+	}
+
+	return &accountpb.CreateAccountResponse{
+		Account: account.ToAccountPB(),
+	}, nil
 }
 
 func (h *AccountHandler) IsExistByEmail(ctx context.Context, in *accountpb.IsExistByEmailRequest) (*accountpb.IsExistByEmailResponse, error) {
-	//TODO implement me
-	panic("implement me")
+	isExist, err := h.service.IsExistByEmail(ctx, in.Email)
+	if err != nil {
+		return nil, err
+	}
+
+	return &accountpb.IsExistByEmailResponse{IsExist: isExist}, nil
 }
 
 func NewAccountHandler(service *service.AccountService) *AccountHandler {

@@ -11,6 +11,32 @@ import (
 	"github.com/jackc/pgx/v5/pgtype"
 )
 
+const createAccount = `-- name: CreateAccount :one
+INSERT INTO accounts (id, email, password)
+VALUES ($1, $2, $3)
+RETURNING id, email, password, created_at, updated_at, last_activity_at
+`
+
+type CreateAccountParams struct {
+	ID       pgtype.UUID
+	Email    string
+	Password string
+}
+
+func (q *Queries) CreateAccount(ctx context.Context, arg CreateAccountParams) (Account, error) {
+	row := q.db.QueryRow(ctx, createAccount, arg.ID, arg.Email, arg.Password)
+	var i Account
+	err := row.Scan(
+		&i.ID,
+		&i.Email,
+		&i.Password,
+		&i.CreatedAt,
+		&i.UpdatedAt,
+		&i.LastActivityAt,
+	)
+	return i, err
+}
+
 const getAccountFromEmail = `-- name: GetAccountFromEmail :one
 SELECT id, email, password, created_at, updated_at, last_activity_at FROM accounts
 WHERE email=$1
@@ -47,4 +73,17 @@ func (q *Queries) GetAccountFromId(ctx context.Context, id pgtype.UUID) (Account
 		&i.LastActivityAt,
 	)
 	return i, err
+}
+
+const isExistByEmail = `-- name: IsExistByEmail :one
+SELECT EXISTS (
+    SELECT 1 FROM accounts WHERE email=$1
+)
+`
+
+func (q *Queries) IsExistByEmail(ctx context.Context, email string) (bool, error) {
+	row := q.db.QueryRow(ctx, isExistByEmail, email)
+	var exists bool
+	err := row.Scan(&exists)
+	return exists, err
 }

@@ -112,6 +112,7 @@ func (x *GetAccountByIdResponse) GetAccount() *Account {
 type CreateAccountRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Email         string                 `protobuf:"bytes,1,opt,name=email,proto3" json:"email,omitempty"`
+	PasswordHash  string                 `protobuf:"bytes,2,opt,name=passwordHash,proto3" json:"passwordHash,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -149,6 +150,13 @@ func (*CreateAccountRequest) Descriptor() ([]byte, []int) {
 func (x *CreateAccountRequest) GetEmail() string {
 	if x != nil {
 		return x.Email
+	}
+	return ""
+}
+
+func (x *CreateAccountRequest) GetPasswordHash() string {
+	if x != nil {
+		return x.PasswordHash
 	}
 	return ""
 }
@@ -293,9 +301,10 @@ const file_api_account_service_proto_rawDesc = "" +
 	"\x15GetAccountByIdRequest\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\"C\n" +
 	"\x16GetAccountByIdResponse\x12)\n" +
-	"\aaccount\x18\x01 \x01(\v2\x0f.models.AccountR\aaccount\",\n" +
+	"\aaccount\x18\x01 \x01(\v2\x0f.models.AccountR\aaccount\"P\n" +
 	"\x14CreateAccountRequest\x12\x14\n" +
-	"\x05email\x18\x01 \x01(\tR\x05email\"B\n" +
+	"\x05email\x18\x01 \x01(\tR\x05email\x12\"\n" +
+	"\fpasswordHash\x18\x02 \x01(\tR\fpasswordHash\"B\n" +
 	"\x15CreateAccountResponse\x12)\n" +
 	"\aaccount\x18\x01 \x01(\v2\x0f.models.AccountR\aaccount\"-\n" +
 	"\x15IsExistByEmailRequest\x12\x14\n" +
