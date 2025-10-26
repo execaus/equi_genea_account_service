@@ -13,13 +13,27 @@ type AccountService struct {
 	queries *db.Queries
 }
 
+func (s *AccountService) GetAccountByEmail(ctx context.Context, email string) (*models.Account, error) {
+	dbAccount, err := s.queries.GetAccountByEmail(ctx, email)
+	if err != nil {
+		return nil, err
+	}
+
+	outputModel := models.Account{}
+	if err = outputModel.LoadFromDB(&dbAccount); err != nil {
+		return nil, err
+	}
+
+	return &outputModel, nil
+}
+
 func (s *AccountService) GetAccountById(ctx context.Context, id uuid.UUID) (*models.Account, error) {
 	uuidId := pgtype.UUID{
 		Bytes: id,
 		Valid: true,
 	}
 
-	dbAccount, err := s.queries.GetAccountFromId(ctx, uuidId)
+	dbAccount, err := s.queries.GetAccountById(ctx, uuidId)
 	if err != nil {
 		return nil, err
 	}

@@ -15,6 +15,17 @@ type AccountHandler struct {
 	accountpb.UnimplementedAccountServiceServer
 }
 
+func (h *AccountHandler) GetAccountByEmail(ctx context.Context, in *accountpb.GetAccountByEmailRequest) (*accountpb.GetAccountByEmailResponse, error) {
+	account, err := h.service.GetAccountByEmail(ctx, in.Email)
+	if err != nil {
+		return nil, err
+	}
+
+	return &accountpb.GetAccountByEmailResponse{
+		Account: account.ToAccountPB(),
+	}, nil
+}
+
 func (h *AccountHandler) GetAccountById(ctx context.Context, in *accountpb.GetAccountByIdRequest) (*accountpb.GetAccountByIdResponse, error) {
 	uuidId, err := uuid.Parse(in.Id)
 	if err != nil {

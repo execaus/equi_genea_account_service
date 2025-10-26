@@ -1,8 +1,8 @@
--- name: GetAccountFromEmail :one
+-- name: GetAccountByEmail :one
 SELECT * FROM accounts
 WHERE email=$1;
 
--- name: GetAccountFromId :one
+-- name: GetAccountById :one
 SELECT * FROM accounts
 WHERE id=$1;
 

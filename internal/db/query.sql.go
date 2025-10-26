@@ -37,13 +37,13 @@ func (q *Queries) CreateAccount(ctx context.Context, arg CreateAccountParams) (A
 	return i, err
 }
 
-const getAccountFromEmail = `-- name: GetAccountFromEmail :one
+const getAccountByEmail = `-- name: GetAccountByEmail :one
 SELECT id, email, password, created_at, updated_at, last_activity_at FROM accounts
 WHERE email=$1
 `
 
-func (q *Queries) GetAccountFromEmail(ctx context.Context, email string) (Account, error) {
-	row := q.db.QueryRow(ctx, getAccountFromEmail, email)
+func (q *Queries) GetAccountByEmail(ctx context.Context, email string) (Account, error) {
+	row := q.db.QueryRow(ctx, getAccountByEmail, email)
 	var i Account
 	err := row.Scan(
 		&i.ID,
@@ -56,13 +56,13 @@ func (q *Queries) GetAccountFromEmail(ctx context.Context, email string) (Accoun
 	return i, err
 }
 
-const getAccountFromId = `-- name: GetAccountFromId :one
+const getAccountById = `-- name: GetAccountById :one
 SELECT id, email, password, created_at, updated_at, last_activity_at FROM accounts
 WHERE id=$1
 `
 
-func (q *Queries) GetAccountFromId(ctx context.Context, id pgtype.UUID) (Account, error) {
-	row := q.db.QueryRow(ctx, getAccountFromId, id)
+func (q *Queries) GetAccountById(ctx context.Context, id pgtype.UUID) (Account, error) {
+	row := q.db.QueryRow(ctx, getAccountById, id)
 	var i Account
 	err := row.Scan(
 		&i.ID,
