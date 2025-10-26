@@ -5,10 +5,12 @@ import (
 	accountpb "equi_genea_account_service/internal/pb/api/account"
 	"equi_genea_account_service/internal/service"
 
+	"github.com/execaus/equi_genea_broker_client"
 	"github.com/google/uuid"
 )
 
 type AccountHandler struct {
+	broker  *equi_genea_broker_client.Producer
 	service *service.AccountService
 	accountpb.UnimplementedAccountServiceServer
 }
@@ -35,6 +37,13 @@ func (h *AccountHandler) CreateAccount(ctx context.Context, in *accountpb.Create
 		return nil, err
 	}
 
+	if err = h.broker.SendAccountCreation(&equi_genea_broker_client.AccountCreationEvent{
+		Email:    account.Email,
+		Password: in.Password,
+	}); err != nil {
+		return nil, err
+	}
+
 	return &accountpb.CreateAccountResponse{
 		Account: account.ToAccountPB(),
 	}, nil
@@ -49,6 +58,6 @@ func (h *AccountHandler) IsExistByEmail(ctx context.Context, in *accountpb.IsExi
 	return &accountpb.IsExistByEmailResponse{IsExist: isExist}, nil
 }
 
-func NewAccountHandler(service *service.AccountService) *AccountHandler {
-	return &AccountHandler{service: service}
+func NewAccountHandler(service *service.AccountService, broker *equi_genea_broker_client.Producer) *AccountHandler {
+	return &AccountHandler{service: service, broker: broker}
 }

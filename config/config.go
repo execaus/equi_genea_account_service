@@ -11,6 +11,7 @@ import (
 type Config struct {
 	Server   ServerConfig
 	Database DatabaseConfig
+	Broker   BrokerConfig
 }
 
 type ServerConfig struct {
@@ -23,6 +24,11 @@ type DatabaseConfig struct {
 	User     string
 	Password string
 	Name     string
+}
+
+type BrokerConfig struct {
+	Host string
+	Port string
 }
 
 const configPath = "config/config.yaml"

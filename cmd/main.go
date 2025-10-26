@@ -14,6 +14,7 @@ import (
 	"os/signal"
 	"syscall"
 
+	"github.com/execaus/equi_genea_broker_client"
 	"google.golang.org/grpc"
 )
 
@@ -31,8 +32,13 @@ func main() {
 	fmt.Println("Connected to DB successfully!")
 
 	grpcServer := grpc.NewServer()
+	broker, err := equi_genea_broker_client.NewProducer(cfg.Broker.Host, cfg.Broker.Port)
+	if err != nil {
+		log.Fatalf("Failed to create producer: %v", err)
+	}
+
 	accountService := service.NewAccountService(queries)
-	handler := app.NewAccountHandler(accountService)
+	handler := app.NewAccountHandler(accountService, broker)
 
 	accountpb.RegisterAccountServiceServer(grpcServer, handler)
 
@@ -48,6 +54,7 @@ func main() {
 	if err != nil {
 		log.Fatalf("Faled to close connect to db: %s", err.Error())
 	}
+	broker.Close()
 	fmt.Println("Server stopped")
 }
 

@@ -24,13 +24,17 @@ DATABASE_PASSWORD=1234
 
 ```yaml
 server:
-  port: "8080"
+  port: "50051"
 
 database:
   host: "localhost"
   port: 5432
-  user: "dbuser"
-  name: "dbname"
+  user: "postgres"
+  name: "equi_genea_account_service"
+
+broker:
+  host: "localhost"
+  port: 9092
 ```
 
 ## Описание параметров
@@ -40,3 +44,5 @@ database:
 - `database.port` — порт базы данных.
 - `database.user` — имя пользователя базы данных.
 - `database.name` — имя базы данных.
+- `broker.host` — адрес брокера сообщений (Kafka).
+- `broker.port` — порт брокера сообщений.
