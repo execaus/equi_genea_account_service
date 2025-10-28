@@ -55,9 +55,9 @@ func (s *AccountService) IsExistByEmail(ctx context.Context, email string) (bool
 	return isExist, nil
 }
 
-func (s *AccountService) CreateAccount(ctx context.Context, id uuid.UUID, email, password string) (*models.Account, error) {
+func (s *AccountService) CreateAccount(ctx context.Context, email, password string) (*models.Account, error) {
 	accountID := pgtype.UUID{
-		Bytes: id,
+		Bytes: uuid.New(),
 		Valid: true,
 	}
 

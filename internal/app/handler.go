@@ -43,7 +43,7 @@ func (h *AccountHandler) GetAccountById(ctx context.Context, in *accountpb.GetAc
 }
 
 func (h *AccountHandler) CreateAccount(ctx context.Context, in *accountpb.CreateAccountRequest) (*accountpb.CreateAccountResponse, error) {
-	account, err := h.service.CreateAccount(ctx, uuid.New(), in.Email, in.PasswordHash)
+	account, err := h.service.CreateAccount(ctx, in.Email, in.PasswordHash)
 	if err != nil {
 		return nil, err
 	}
